@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Helpdesk Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .chat-box {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            background: #e8f0fe;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background: #d1ffd6;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #1a252f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">
+        College Helpdesk Chatbot
+    </div>
+    <div class="chat-box" id="chatBox">
+        <div class="bot-message">Hello! 👋 Welcome to the College Helpdesk. How can I assist you?</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your question...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("userInput").value.toLowerCase();
+    let chatBox = document.getElementById("chatBox");
+
+    if (input === "") return;
+
+    // Display user message
+    chatBox.innerHTML += "<div class='user-message'>" + input + "</div>";
+
+    let response = "";
+
+    // Predefined responses
+    if (input.includes("admission")) {
+        response = "Admissions are open from June to August. Please visit the admission office or apply online.";
+    } 
+    else if (input.includes("fees")) {
+        response = "You can pay fees online through the student portal or at the accounts office.";
+    } 
+    else if (input.includes("courses")) {
+        response = "We offer B.Sc, B.Com, B.A, BCA, MCA, MBA and many more programs.";
+    } 
+    else if (input.includes("timing") || input.includes("hours")) {
+        response = "College working hours are 9:00 AM to 4:00 PM, Monday to Friday.";
+    } 
+    else if (input.includes("contact")) {
+        response = "You can contact us at MASC@college.edu or call +91-9876543210.";
+    } 
+    else {
+        response = "Sorry, I didn't understand that. Please contact the helpdesk office for more details.";
+    }
+
+    // Display bot response
+    setTimeout(() => {
+        chatBox.innerHTML += "<div class='bot-message'>" + response + "</div>";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 500);
+
+    document.getElementById("userInput").value = "";
+}
+</script>
+
+</body>
+</html>
